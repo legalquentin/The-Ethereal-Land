@@ -20,6 +20,7 @@ class ModuleFront {
         ModuleFront();
         int play(sf::RenderWindow &window);
     private:
+        void setAnimation(Animator &PlayerAnimator, sf::Texture PlayerTexture);
         void mouseEvent(sf::Text &opt, sf::RenderWindow &window, float posX, float posY, int police, sf::Event &event);
 };
 
