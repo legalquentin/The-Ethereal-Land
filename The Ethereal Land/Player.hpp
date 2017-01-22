@@ -13,6 +13,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
 #include <string>
+#include "Animator.hpp"
 
 struct S_BaseStats {
     int str;
@@ -34,11 +35,6 @@ struct S_Stats {
     int current_stamina;
     S_BaseStats BaseStats;
 };
-
-//struct S_Race {
-//    std::string name;
-//    S_stats stats;
-//};
 
 struct S_Class {
     std::string name;
@@ -62,17 +58,20 @@ struct S_Player {
     S_Items Items;
     S_Stats Stats;
     S_Class playerClass;
-//    S_Race Race;
 };
 
 class Player {
-    private:
-        S_Player m_player;
-        
-    public:
-        Player();
-        void Init();
-        void Player::Setup_class(std::string playerClass);
-        S_Player recoverPlayer();
+
+private:
+    S_Player m_player;
+    void Setup_class();
+    void Setup_Animations(Animator &Animator, sf::Texture &Texture);
+public:
+    Player();
+    void Init(std::string PlayerName,std::string PlayerSurname,std::string PlayerClass,Animator&PlayerAnimator, sf::Texture &PlayerTexture);
+    S_Player recoverPlayer();
+    void LevelUp();
+    void Animate(std::string action, int speed);
 };
+
 #endif /* Player_hpp */

@@ -13,6 +13,8 @@
 #include <SFML/Graphics.hpp>
 #include "ResourcePath.hpp"
 #include "Animator.hpp"
+#include "Tools.hpp"
+#include "Player.hpp"
 
 class ModuleFront {
 
@@ -20,7 +22,6 @@ class ModuleFront {
         ModuleFront();
         int play(sf::RenderWindow &window);
     private:
-        void setAnimation(Animator &PlayerAnimator, sf::Texture PlayerTexture);
         void mouseEvent(sf::Text &opt, sf::RenderWindow &window, float posX, float posY, int police, sf::Event &event);
 };
 
