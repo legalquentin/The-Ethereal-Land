@@ -48,12 +48,15 @@ int Menu::play(sf::RenderWindow &window) {
         while (window.pollEvent(event))
         {
             // Close window: exit
-            if (event.type == sf::Event::Closed)
+            if (event.type == sf::Event::Closed) {
                 window.close();
+                return 0;
+            }
             
             // Escape pressed: exit
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                 window.close();
+                return 0;
             }
             if (event.type == sf::Event::MouseMoved)
             {
@@ -64,7 +67,6 @@ int Menu::play(sf::RenderWindow &window) {
             if (event.type == sf::Event::MouseButtonPressed)
             {
                 if (opt2.getGlobalBounds().contains(static_cast<sf::Vector2f>(sf::Mouse::getPosition(window)))) {
-                    printf("clicked !");
                     return 1;
                 }
             }
@@ -94,4 +96,3 @@ void Menu::mouseEvent(sf::Text &opt, sf::RenderWindow &window, float posX, float
     }
     opt.setPosition(window.getSize().x/posX - opt.getLocalBounds().width/2.0f, window.getSize().y/posY);
 }
-//sf::RenderWindow Menu::play() {

@@ -8,16 +8,16 @@
 
 #include "Game.hpp"
 
-ModuleFront::ModuleFront() {
+Game::Game() {
     
 }
 
-int ModuleFront::play(sf::RenderWindow &window) {
+int Game::play(sf::RenderWindow &window) {
     
     // Declare stuff
     
     sf::Font font;
-    sf::Texture guiTexture,leatherTexture,guiTextTexture,mapTexture,texture1,texture2,PlayerTexture;
+    sf::Texture guiTexture,leatherTexture,guiTextTexture,mapTexture,PlayerTexture;
     sf::Sprite sprite,PlayerSprite;
     sf::Vector2i spriteSize(624,224), guiSize(624*2.4f,0), framesize(-65,65);
     sf::Clock clock;
@@ -29,6 +29,7 @@ int ModuleFront::play(sf::RenderWindow &window) {
     Animator animator(sprite);
     Animator PlayerAnimator(PlayerSprite);
     Player Hero;
+    Scene GameScene;
     
     // Load the textures
     
@@ -37,27 +38,12 @@ int ModuleFront::play(sf::RenderWindow &window) {
     leatherTexture.loadFromFile(resourcePath() + "oldWood.jpg");
     guiTextTexture.loadFromFile(resourcePath() + "TextHUD.jpg");
     mapTexture.loadFromFile(resourcePath() + "Map.jpg");
-    texture1.loadFromFile(resourcePath() + "WaterFall.png", sf::IntRect(0, 0, 4992, 224));
-    texture2.loadFromFile(resourcePath() + "GreatWaterFalls.png", sf::IntRect(0, 0, 7488, 384));
     PlayerTexture.loadFromFile(resourcePath() + "PlayerDefault.png");
     lock = true;
     go = false;
-
-    // Write stuff
-    
-    sf::Text opt1("- press space to awake", font, 25);
-    sf::Text opt2("Knight Holyter", font, 35);
-    opt1.setFillColor(sf::Color::Black);
-    opt2.setFillColor(sf::Color::White);
     
     // init the player class
     Hero.Init("Arthur","Pandragon","Warrior",PlayerAnimator, PlayerTexture);
-    
-    // Set Background animations
-//    auto& backgroundAnimation1 = animator.CreateAnimation("background1", texture1, sf::seconds(1.2), true);
-//    backgroundAnimation1.AddFrames(sf::Vector2i(0,0), spriteSize, 8);
-    auto& backgroundAnimation2 = animator.CreateAnimation("background2", texture2, sf::seconds(1.6), true);
-    backgroundAnimation2.AddFrames(sf::Vector2i(0,0), sf::Vector2i(624,384), 12);
     
     // Generate The HUD
     std::vector<sf::Sprite> HUD = toolbox.DisplayHud(window, guiTexture, spriteSize, mapTexture, guiTextTexture, leatherTexture);
@@ -65,13 +51,28 @@ int ModuleFront::play(sf::RenderWindow &window) {
     sf::Time deltaTime = clock.restart();
     PlayerAnimator.update(deltaTime);
     
-    // Rescale Stuff
-    sprite.setScale(1500./spriteSize.x, 700./spriteSize.y);
-    PlayerSprite.setPosition(40, spriteSize.y*3.1f-145);
-    PlayerSprite.setScale(2,2);
+    // Write stuff
+    
+    sf::Text opt1("- press space to awake", font, 25);
+    sf::Text opt2(Hero.recoverPlayer().name, font, 35);
+    opt1.setFillColor(sf::Color::Black);
+    opt2.setFillColor(sf::Color::White);
+    
+    GameScene.addScene(animator,sprite,"forest",1,8,sf::Vector2i(768,368),4,sf::Vector2i(40,spriteSize.y*700./spriteSize.y-215),30,30,PlayerSprite);
+    
+    GameScene.addScene(animator,sprite,"WaterFall",2,8,spriteSize,2,sf::Vector2i(40, spriteSize.y*3.1f-145),30, 30,PlayerSprite);
+    GameScene.addScene(animator,sprite,"GreatWaterFalls", 3, 12, sf::Vector2i(624,384),4.2,sf::Vector2i(40,spriteSize.y*700./spriteSize.y-215),1,30,PlayerSprite);
+    
+    GameScene.SwitchScene(PlayerSprite, animator, 1, sprite);
+    
+    // Game loop
+    GameScene.Play(Hero, sprite, PlayerSprite);
+    
     opt1.setPosition(25, sprite.getGlobalBounds().height+25);
-    opt2.setPosition(1165-opt2.getLocalBounds().width/2, sprite.getGlobalBounds().height+15);
-
+    opt2.setPosition(1165-opt2.getLocalBounds().width/2, 700);
+    
+    int velocity = 0;
+    
     while (window.isOpen())
     {
         // Process events
@@ -79,89 +80,70 @@ int ModuleFront::play(sf::RenderWindow &window) {
         
         // If Player attack is over switch to idle
         if (lock == false && PlayerAnimator.IsAnimationPlaying() == false) {
-            if (PlayerAnimator.GetCurrentAnimationName() == "AttackLeft")
+            if (PlayerAnimator.GetCurrentAnimationName() == "SimpleAttackLeft")
                 PlayerAnimator.SwitchAnimation("IdleLeft");
-            if (PlayerAnimator.GetCurrentAnimationName() == "AttackRight")
+            if (PlayerAnimator.GetCurrentAnimationName() == "SimpleAttackRight")
                 PlayerAnimator.SwitchAnimation("IdleRight");
+            if (PlayerAnimator.GetCurrentAnimationName() == "SimpleAttackBack")
+                PlayerAnimator.SwitchAnimation("IdleBack");
+            if (PlayerAnimator.GetCurrentAnimationName() == "SimpleAttackFront")
+                PlayerAnimator.SwitchAnimation("IdleFront");
         }
-        
         while (window.pollEvent(event))
         {
             if (event.type == sf::Event::Closed)
                 window.close();
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape)
-                window.close();
+                return 1;
+            
             if (lock == false && event.type != sf::Event::KeyPressed) {
                 if (PlayerAnimator.GetCurrentAnimationName() == "MoveLeft")
                     PlayerAnimator.SwitchAnimation("IdleLeft");
                 if (PlayerAnimator.GetCurrentAnimationName() == "MoveRight")                    PlayerAnimator.SwitchAnimation("IdleRight");
             }
             
-            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E) {
-                if (PlayerAnimator.GetCurrentAnimationName() == "MoveLeft" ||
-                    PlayerAnimator.GetCurrentAnimationName() == "IdleLeft" ||
-                    (PlayerAnimator.GetCurrentAnimationName() == "AttackLeft" && PlayerAnimator.IsAnimationPlaying() == false))
-                    PlayerAnimator.SwitchAnimation("AttackLeft");
-                if (PlayerAnimator.GetCurrentAnimationName() == "MoveRight" ||
-                    PlayerAnimator.GetCurrentAnimationName() == "IdleRight"||
-                    (PlayerAnimator.GetCurrentAnimationName() == "AttackRight" && PlayerAnimator.IsAnimationPlaying() == false))
-                    PlayerAnimator.SwitchAnimation("AttackRight");
-            }
-            
             if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Right) && (lock == false)) {
                 if (PlayerAnimator.IsAnimationPlaying() == false || PlayerAnimator.GetCurrentAnimationName() != "MoveRight") {
                     PlayerAnimator.SwitchAnimation("MoveRight");
                 }
-                PlayerSprite.setPosition(PlayerSprite.getPosition().x+10, PlayerSprite.getPosition().y);
+                velocity = 200;
             }
-            
             if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Left) && (lock == false)) {
                  if (PlayerAnimator.IsAnimationPlaying() == false || PlayerAnimator.GetCurrentAnimationName() != "MoveLeft")
                      PlayerAnimator.SwitchAnimation("MoveLeft");
-                PlayerSprite.setPosition(PlayerSprite.getPosition().x-10, PlayerSprite.getPosition().y);
+                velocity = -200;
+            }
+            if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Down) && (lock == false)) {
+//                if (PlayerAnimator.IsAnimationPlaying() == false || PlayerAnimator.GetCurrentAnimationName() == "MoveRight" ||  PlayerAnimator.GetCurrentAnimationName() == "MoveLeft" ) {
+                    PlayerAnimator.SwitchAnimation("IdleFront");
+//                }
+                velocity = 0;
+            }
+            if ((event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Up) && (lock == false)) {
+//                if (PlayerAnimator.IsAnimationPlaying() == false || PlayerAnimator.GetCurrentAnimationName() == "MoveRight" ||  PlayerAnimator.GetCurrentAnimationName() == "MoveLeft" ) {
+                    PlayerAnimator.SwitchAnimation("IdleBack");
+//                }
+                velocity = 0;
+            }
+            if (event.type == sf::Event::KeyReleased) {
+                velocity = 0;
+            }
+            if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::E) {
+                Hero.Attack("Simple", PlayerAnimator, velocity);
             }
             
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Space) {
+                velocity = 0;
                 go = true;
             }
             
-            if (event.type == sf::Event::MouseMoved)
-            {
-                
-            }
-            
-            if (event.type == sf::Event::MouseButtonPressed)
-            {
-        
-            }
-            
-            if (PlayerSprite.getPosition().x >= sprite.getGlobalBounds().width - 70) {
-                if (animator.GetCurrentAnimationName() != "background2") {
-                    animator.SwitchAnimation("background2");
-                    sprite.setScale(1500./624., 700./384.);
-                    PlayerSprite.setScale(4,4);
-                    PlayerSprite.setPosition(20, PlayerSprite.getPosition().y-50);
-                } else if (animator.GetCurrentAnimationName() != "background1") {
-                    animator.SwitchAnimation("background1");
-                    sprite.setScale(1500./spriteSize.x, 700./spriteSize.y);
-                    PlayerSprite.setScale(2,2);
-                    PlayerSprite.setPosition(20, spriteSize.y*3.1f-145);
-                }
-            }
-            if (PlayerSprite.getPosition().x <= 10) {
-                if (animator.GetCurrentAnimationName() != "background2") {
-                    animator.SwitchAnimation("background2");
-                    sprite.setScale(1500./624., 700./384.);
-                    PlayerSprite.setScale(4,4);
-                    PlayerSprite.setPosition(spriteSize.x*1500./spriteSize.x-180, PlayerSprite.getPosition().y-50);
-                } else if (animator.GetCurrentAnimationName() != "background1") {
-                    animator.SwitchAnimation("background1");
-                    sprite.setScale(1500./spriteSize.x, 700./spriteSize.y);
-                    PlayerSprite.setScale(2,2);
-                    PlayerSprite.setPosition(spriteSize.x*1500./spriteSize.x-80, spriteSize.y*3.1f-145);
-                }
-            }
+            if (event.type == sf::Event::MouseMoved) { }
+           
+            if (event.type == sf::Event::MouseButtonPressed) { }
         }
+      
+        PlayerSprite.move(velocity * clock.getElapsedTime().asSeconds(), 0);
+        
         deltaTime = clock.restart();
         animator.update(deltaTime);
         if (go)
@@ -170,6 +152,7 @@ int ModuleFront::play(sf::RenderWindow &window) {
             lock = false;
         window.clear(sf::Color::Black);
         
+        GameScene.Update(PlayerSprite, animator, sprite, PlayerAnimator);
         // Draw the sprite
         window.draw(sprite);
         window.draw(PlayerSprite);

@@ -30,7 +30,7 @@ int main(int, char const**)
     window.setIcon(icon.getSize().x, icon.getSize().y, icon.getPixelsPtr());
 
     Menu intro;
-    ModuleFront front;
+    Game front;
     
     // Load a sprite to display
     
@@ -42,7 +42,7 @@ int main(int, char const**)
 //    music.play();
 
     // Game loop
-    if (intro.play(window) == 1) {
+    while (intro.play(window) == 1) {
         front.play(window);
     }
     

@@ -169,8 +169,7 @@ std::vector<sf::Sprite> Tools::DisplayHud(sf::RenderWindow &window, sf::Texture 
     //    BMbackground.setTextureRect();
     Tbackground.setTexture(leatherTexture);
     Tbackground.setPosition(sf::Vector2f(spriteSize.x*1500./spriteSize.x, 0));
-    Tbackground.setScale(1,1);//(spriteSize.x*1500./spriteSize.x)+(window.sf::Window::getSize().x-spriteSize.x*1500./spriteSize.x),(spriteSize.y*700./spriteSize.y));
-    // Send back all of the sprites as an array
+    Tbackground.setScale(1,1);
 
 
     // Bot mid HUD

@@ -87,9 +87,53 @@ void Player::Setup_Animations(Animator &Animator, sf::Texture &Texture) {
     auto& AnimationIdleRight = Animator.CreateAnimation("IdleRight", Texture, sf::seconds(1), false);
     AnimationIdleRight.AddFrames(sf::Vector2i(0,703), sf::Vector2i(65,65), 1);
     
-    auto& AnimationAttackRight = Animator.CreateAnimation("AttackRight", Texture, sf::seconds(0.35), false);
-    AnimationAttackRight.AddFrames(sf::Vector2i(0,959), sf::Vector2i(64,65), 6);
+    auto& AnimationIdleBack = Animator.CreateAnimation("IdleBack", Texture, sf::seconds(1), false);
+    AnimationIdleBack.AddFrames(sf::Vector2i(0,511), sf::Vector2i(65,65), 1);
     
-    auto& AnimationAttackLeft = Animator.CreateAnimation("AttackLeft", Texture, sf::seconds(0.35), false);
+    auto& AnimationIdleFront = Animator.CreateAnimation("IdleFront", Texture, sf::seconds(1), false);
+    AnimationIdleFront.AddFrames(sf::Vector2i(0,640), sf::Vector2i(65,65), 1);
+    
+    auto& AnimationAttackRight = Animator.CreateAnimation("SimpleAttackRight", Texture, sf::seconds(0.5),false);
+    AnimationAttackRight.AddFrames(sf::Vector2i(0,959), sf::Vector2i(64,65), 6);
+    AnimationAttackRight.AddFrames(sf::Vector2i(320,959), sf::Vector2i(64,65), 1);
+    AnimationAttackRight.AddFrames(sf::Vector2i(320,959), sf::Vector2i(64,65), 1);
+    
+    auto& AnimationAttackLeft = Animator.CreateAnimation("SimpleAttackLeft", Texture, sf::seconds(0.5),false);
     AnimationAttackLeft.AddFrames(sf::Vector2i(0,831), sf::Vector2i(64,65), 6);
+    AnimationAttackLeft.AddFrames(sf::Vector2i(320,831), sf::Vector2i(64,65), 1);
+    AnimationAttackLeft.AddFrames(sf::Vector2i(320,831), sf::Vector2i(64,65), 1);
+    
+    auto& AnimationAttackBack = Animator.CreateAnimation("SimpleAttackBack", Texture, sf::seconds(0.5),false);
+    AnimationAttackBack.AddFrames(sf::Vector2i(0,767), sf::Vector2i(64,65), 6);
+    AnimationAttackBack.AddFrames(sf::Vector2i(320,767), sf::Vector2i(64,65), 1);
+    AnimationAttackBack.AddFrames(sf::Vector2i(320,767), sf::Vector2i(64,65), 1);
+    
+    auto& AnimationAttackFront = Animator.CreateAnimation("SimpleAttackFront", Texture, sf::seconds(0.5),false);
+    AnimationAttackFront.AddFrames(sf::Vector2i(0,896), sf::Vector2i(64,65), 6);
+    AnimationAttackFront.AddFrames(sf::Vector2i(320,896), sf::Vector2i(64,65), 1);
+    AnimationAttackFront.AddFrames(sf::Vector2i(320,896), sf::Vector2i(64,65), 1);
+    
+    auto& AnimationMagicFront = Animator.CreateAnimation("MagicFront", Texture, sf::seconds(1),false);
+    AnimationMagicFront.AddFrames(sf::Vector2i(0,128), sf::Vector2i(64,65), 7);
+    AnimationMagicFront.AddFrames(sf::Vector2i(384,128), sf::Vector2i(64,65), 1);
+    AnimationMagicFront.AddFrames(sf::Vector2i(384,128), sf::Vector2i(64,65), 1);
+}
+
+void Player::Attack(std::string AttackType, Animator &PlayerAnimator, int &velocity) {
+    
+    if (PlayerAnimator.GetCurrentAnimationName() == "MoveLeft" ||
+        PlayerAnimator.GetCurrentAnimationName() == "IdleLeft")
+        PlayerAnimator.SwitchAnimation(AttackType+"AttackLeft");
+    
+    if (PlayerAnimator.GetCurrentAnimationName() == "MoveRight" ||
+        PlayerAnimator.GetCurrentAnimationName() == "IdleRight")
+        PlayerAnimator.SwitchAnimation(AttackType+"AttackRight");
+    
+    if (PlayerAnimator.GetCurrentAnimationName() == "IdleBack")
+        PlayerAnimator.SwitchAnimation(AttackType+"AttackBack");
+    
+    if (PlayerAnimator.GetCurrentAnimationName() == "IdleFront")
+        PlayerAnimator.SwitchAnimation(AttackType+"AttackFront");
+    
+    velocity = 0;
 }

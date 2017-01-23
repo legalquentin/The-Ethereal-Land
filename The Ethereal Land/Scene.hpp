@@ -19,16 +19,24 @@
 #include "ResourcePath.hpp"
 
 struct S_Scene {
+    int Number;
+    int PlayerScale;
+    std::string Name;
     sf::Sprite Background;
     sf::Texture BackgroundTexture;
-    Animator Animation;
+    sf::Vector2i BackgroundSize;
+    sf::Vector2i PlayerPosition;
 };
 
 class Scene {
 private:
-    S_Scene m_Scene;
+    std::vector<S_Scene> m_Scene;
+    int m_index;
 public:
-    Scene(sf::Sprite &backgroundSprite ,std::string &background, int frames, sf::Vector2i backgroundSize, int playerSize, sf::Vector2i PlayerPosition, int playerScale, int LeftBoundaries, int RightBoundaries);
-    
+    Scene();
+    void addScene(Animator &animator,sf::Sprite &backgroundSprite ,std::string background,int num, int frames, sf::Vector2i backgroundSize,int playerSize, sf::Vector2i PlayerPosition, int LeftBoundaries, int RightBoundaries, sf::Sprite &player);
+    void Play(Player &Hero, sf::Sprite &sprite, sf::Sprite &PlayerSprite);
+    void Update(sf::Sprite &PlayerSprite, Animator &animator, sf::Sprite &sprite, Animator &PlayerAnimator);
+    void SwitchScene(sf::Sprite &PlayerSprite, Animator &animator, int sceneNumber, sf::Sprite &sprite);
 };
 #endif /* Scene_hpp */

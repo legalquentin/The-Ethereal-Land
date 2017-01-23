@@ -72,6 +72,7 @@ public:
     S_Player recoverPlayer();
     void LevelUp();
     void Animate(std::string action, int speed);
+    void Attack(std::string AttackType, Animator &PlayerAnimator, int &velocity);
 };
 
 #endif /* Player_hpp */

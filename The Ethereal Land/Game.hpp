@@ -14,12 +14,13 @@
 #include "ResourcePath.hpp"
 #include "Animator.hpp"
 #include "Tools.hpp"
+#include "Scene.hpp"
 #include "Player.hpp"
 
-class ModuleFront {
+class Game {
 
     public:
-        ModuleFront();
+        Game();
         int play(sf::RenderWindow &window);
     private:
         void mouseEvent(sf::Text &opt, sf::RenderWindow &window, float posX, float posY, int police, sf::Event &event);
