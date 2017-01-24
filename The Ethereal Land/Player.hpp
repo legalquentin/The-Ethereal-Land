@@ -13,6 +13,7 @@
 #include <SFML/Graphics.hpp>
 #include <stdio.h>
 #include <string>
+#include "ResourcePath.hpp"
 #include "Animator.hpp"
 
 struct S_BaseStats {
@@ -49,8 +50,10 @@ struct S_Player {
     std::string name;
     std::string surname;
     std::string title;
-    std::string playerTexture;
+    sf::Texture playerTexture;
     sf::Sprite playerSprite;
+    sf::Sprite Effect;
+    std::vector<sf::Texture> EffectTexture;
     int age;
     int xp;
     int lvl;
@@ -65,13 +68,14 @@ class Player {
 private:
     S_Player m_player;
     void Setup_class();
-    void Setup_Animations(Animator &Animator, sf::Texture &Texture);
+    void Setup_Animations(Animator &Animator);
 public:
     Player();
-    void Init(std::string PlayerName,std::string PlayerSurname,std::string PlayerClass,Animator&PlayerAnimator, sf::Texture &PlayerTexture);
+    void Init(std::string PlayerName,std::string PlayerSurname,std::string PlayerClass,Animator&PlayerAnimator);
     S_Player recoverPlayer();
     void LevelUp();
     void Animate(std::string action, int speed);
+    void Effects(Animator &Animator, sf::Sprite &EffectSprite);
     void Attack(std::string AttackType, Animator &PlayerAnimator, int &velocity);
 };
 

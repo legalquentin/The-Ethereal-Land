@@ -34,9 +34,10 @@ private:
     int m_index;
 public:
     Scene();
-    void addScene(Animator &animator,sf::Sprite &backgroundSprite ,std::string background,int num, int frames, sf::Vector2i backgroundSize,int playerSize, sf::Vector2i PlayerPosition, int LeftBoundaries, int RightBoundaries, sf::Sprite &player);
+    void AddScene(Animator &animator,sf::Sprite &backgroundSprite ,std::string background,int num, int frames, sf::Vector2i backgroundSize,int playerSize, sf::Vector2i PlayerPosition, int LeftBoundaries, int RightBoundaries, sf::Sprite &player, int rows);
     void Play(Player &Hero, sf::Sprite &sprite, sf::Sprite &PlayerSprite);
     void Update(sf::Sprite &PlayerSprite, Animator &animator, sf::Sprite &sprite, Animator &PlayerAnimator);
     void SwitchScene(sf::Sprite &PlayerSprite, Animator &animator, int sceneNumber, sf::Sprite &sprite);
+    void AddEffect(sf::Sprite &PlayerSprite, sf::Sprite &EffectSprite, Animator &animator, std::string effectName, int size);
 };
 #endif /* Scene_hpp */

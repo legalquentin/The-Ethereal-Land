@@ -27,20 +27,21 @@ int Menu::play(sf::RenderWindow &window) {
     opt3.setPosition(window.getSize().x/2.0f - opt3.getLocalBounds().width/2.0f, window.getSize().y/1.2f);
 
     sf::Texture texture;
-    if (!texture.loadFromFile(resourcePath() + "forest.png", sf::IntRect(0, 0, 6144, 368))) {
-        return;
-    }
+    texture.loadFromFile(resourcePath() + "SolaireBackground.png");
     sf::Sprite sprite;
-    sf::Vector2i spriteSize(768,368);
+    sf::Vector2i spriteSize(960,512);
     Animator animator(sprite);
     
 //    animator.bakeAnimation(animator, 7, 768, spriteSize, texture);
     // create an animation and get the reference to it
-    auto& backgroundAnimation = animator.CreateAnimation("background", texture, sf::seconds(0.9), true);
+    auto& backgroundAnimation = animator.CreateAnimation("background", texture, sf::seconds(2), true);
     //add frames to the animation
-    backgroundAnimation.AddFrames(sf::Vector2i(0,0), spriteSize, 8);
+    backgroundAnimation.AddFrames(sf::Vector2i(0,0), spriteSize, 10);
+    backgroundAnimation.AddFrames(sf::Vector2i(0,512), spriteSize, 10);
 
     sf::Clock clock;
+//    Sprite.setScale(1500./m_Scene[sceneNumber].BackgroundSize.x, 700./m_Scene[sceneNumber].BackgroundSize.y);
+    sprite.scale(1980./960., 1080./512.);
     while (window.isOpen())
     {
         // Process events
@@ -48,15 +49,12 @@ int Menu::play(sf::RenderWindow &window) {
         while (window.pollEvent(event))
         {
             // Close window: exit
-            if (event.type == sf::Event::Closed) {
+            if (event.type == sf::Event::Closed)
                 window.close();
-                return 0;
-            }
             
             // Escape pressed: exit
             if (event.type == sf::Event::KeyPressed && event.key.code == sf::Keyboard::Escape) {
                 window.close();
-                return 0;
             }
             if (event.type == sf::Event::MouseMoved)
             {
@@ -75,7 +73,6 @@ int Menu::play(sf::RenderWindow &window) {
         animator.update(deltaTime);
         window.clear(sf::Color::Black);
         // Draw the sprite
-        sprite.setScale(2.5f, 2.948f);
         window.draw(sprite);
         window.draw(opt1);
         window.draw(opt2);
@@ -96,3 +93,4 @@ void Menu::mouseEvent(sf::Text &opt, sf::RenderWindow &window, float posX, float
     }
     opt.setPosition(window.getSize().x/posX - opt.getLocalBounds().width/2.0f, window.getSize().y/posY);
 }
+//sf::RenderWindow Menu::play() {

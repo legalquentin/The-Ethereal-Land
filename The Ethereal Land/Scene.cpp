@@ -17,7 +17,7 @@ Scene::Scene() {
     
 }
 
-void Scene::addScene(Animator &animator,sf::Sprite &backgroundSprite ,std::string background, int num,int frames, sf::Vector2i backgroundSize, int playerSize, sf::Vector2i PlayerPosition, int LeftBoundaries, int RightBoundaries, sf::Sprite &player) {
+void Scene::AddScene(Animator &animator,sf::Sprite &backgroundSprite ,std::string background, int num,int frames, sf::Vector2i backgroundSize, int playerSize, sf::Vector2i PlayerPosition, int LeftBoundaries, int RightBoundaries, sf::Sprite &player, int rows) {
     S_Scene scene;
     m_index = num-1;
     scene.Name = background;
@@ -28,13 +28,15 @@ void Scene::addScene(Animator &animator,sf::Sprite &backgroundSprite ,std::strin
     scene.BackgroundSize = backgroundSize;
     m_Scene.push_back(scene);
     auto& backgroundAnimation = animator.CreateAnimation("background-"+std::to_string(num-1), m_Scene[num-1].BackgroundTexture, sf::seconds(1.2), true);
-    backgroundAnimation.AddFrames(sf::Vector2i(0,0), backgroundSize, 8);
+    for (int i = 0; i != rows; i++) {
+        backgroundAnimation.AddFrames(sf::Vector2i(0,0), backgroundSize, frames);
+    }
 }
 
 void Scene::Play(Player &Hero, sf::Sprite &sprite, sf::Sprite &PlayerSprite) {
-    m_index = 1;
+    m_index = 2;
     sprite.setScale(1500./m_Scene[m_index].BackgroundSize.x, 700./m_Scene[m_index].BackgroundSize.y);
-    PlayerSprite.setPosition(40, 700./m_Scene[m_index].BackgroundSize.y*m_Scene[m_index].BackgroundSize.y-145);
+    PlayerSprite.setPosition(60, 700./m_Scene[m_index].BackgroundSize.y*m_Scene[m_index].BackgroundSize.y-145);
 }
 
 void Scene::Update(sf::Sprite &PlayerSprite, Animator &animator, sf::Sprite &Sprite, Animator &PlayerAnimator) {
@@ -69,4 +71,19 @@ void Scene::SwitchScene(sf::Sprite &PlayerSprite, Animator &animator, int sceneN
     animator.SwitchAnimation("background-"+std::to_string(sceneNumber));
     Sprite.setScale(1500./m_Scene[sceneNumber].BackgroundSize.x, 700./m_Scene[sceneNumber].BackgroundSize.y);
     PlayerSprite.setScale(m_Scene[m_index].PlayerScale,m_Scene[m_index].PlayerScale);
+}
+
+void Scene::AddEffect(sf::Sprite &PlayerSprite, sf::Sprite &EffectSprite, Animator &animator, std::string effectName, int size) {
+    animator.SwitchAnimation(effectName.c_str());
+    sf::Vector2i value;
+    if (size == 1) {
+        value.x = m_Scene[m_index].PlayerScale;
+        value.y = m_Scene[m_index].PlayerScale;
+    } else {
+        value.x = m_Scene[m_index].PlayerScale+2.5;
+        value.y = m_Scene[m_index].PlayerScale+0.5;
+    }
+    
+    EffectSprite.setScale(value.x,value.y);
+    EffectSprite.setPosition((PlayerSprite.getPosition().x-(EffectSprite.getLocalBounds().width*value.x-PlayerSprite.getLocalBounds().width)/3), PlayerSprite.getPosition().y-(EffectSprite.getLocalBounds().height*value.y-PlayerSprite.getLocalBounds().height)/2);
 }

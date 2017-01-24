@@ -17,13 +17,27 @@
 #include "Scene.hpp"
 #include "Player.hpp"
 
+struct S_Textures {
+    sf::Font font;
+    sf::Texture GUI;
+    sf::Texture Map;
+    sf::Texture woodTexture;
+    sf::Texture guiTextTexture;
+};
+
+struct S_Game {
+    
+};
 class Game {
 
-    public:
-        Game();
-        int play(sf::RenderWindow &window);
-    private:
-        void mouseEvent(sf::Text &opt, sf::RenderWindow &window, float posX, float posY, int police, sf::Event &event);
+private:
+    S_Game m_Game;
+    S_Textures m_Textures;
+    void mouseEvent(sf::Text &opt, sf::RenderWindow &window, float posX, float posY, int police, sf::Event &event);
+    
+public:
+    Game();
+    int play(sf::RenderWindow &window, Player &Hero);
 };
 
 #endif /* Game_hpp */

@@ -13,6 +13,7 @@
 #include <SFML/Graphics.hpp>
 #include "ResourcePath.hpp"
 #include "Animator.hpp"
+#include "Player.hpp"
 
 class Menu {
     

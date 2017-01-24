@@ -15,7 +15,7 @@ S_Player Player::recoverPlayer() {
     return m_player;
 }
 
-void Player::Init(std::string PlayerName,std::string PlayerSurname,std::string PlayerClass, Animator &PlayerAnimator, sf::Texture &PlayerTexture) {
+void Player::Init(std::string PlayerName,std::string PlayerSurname,std::string PlayerClass, Animator &PlayerAnimator) {
     int rc,cl;
     m_player.xp = 0;
     m_player.lvl = 0;
@@ -24,9 +24,14 @@ void Player::Init(std::string PlayerName,std::string PlayerSurname,std::string P
     m_player.surname = PlayerName;
     m_player.title = "";
     m_player.playerClass.name = PlayerClass;
-    
+    m_player.playerTexture.loadFromFile(resourcePath() + "PlayerDefaultM.png");
+    sf::Texture tmp;
+    tmp.loadFromFile(resourcePath() + "FireAura.png");
+    m_player.EffectTexture.push_back(tmp);
+    tmp.loadFromFile(resourcePath() + "DemonFireAura.png");
+    m_player.EffectTexture.push_back(tmp);
     Setup_class();
-    Setup_Animations(PlayerAnimator,PlayerTexture);
+    Setup_Animations(PlayerAnimator);
     LevelUp();
 }
 
@@ -71,52 +76,47 @@ void Player::LevelUp() {
     m_player.lvl+=1;
 }
 
-void Player::Setup_Animations(Animator &Animator, sf::Texture &Texture) {
-    auto& AnimationGetUp = Animator.CreateAnimation("GetUp", Texture, sf::seconds(1.6), false);
+void Player::Setup_Animations(Animator &Animator) {
+    auto& AnimationGetUp = Animator.CreateAnimation("GetUp", m_player.playerTexture, sf::seconds(1.6), false);
     AnimationGetUp.AddFrames(sf::Vector2i(452,1279), sf::Vector2i(-65,65), 6);
     
-    auto& AnimationRight = Animator.CreateAnimation("MoveRight", Texture,sf::seconds(0.85),true);
+    auto& AnimationRight = Animator.CreateAnimation("MoveRight", m_player.playerTexture,sf::seconds(0.85),true);
     AnimationRight.AddFrames(sf::Vector2i(0,703), sf::Vector2i(64,65), 9);
     
-    auto& AnimationLeft = Animator.CreateAnimation("MoveLeft", Texture, sf::seconds(0.85),true);
+    auto& AnimationLeft = Animator.CreateAnimation("MoveLeft", m_player.playerTexture, sf::seconds(0.85),true);
     AnimationLeft.AddFrames(sf::Vector2i(0,575), sf::Vector2i(64,65), 9);
     
-    auto& AnimationIdleLeft = Animator.CreateAnimation("IdleLeft", Texture, sf::seconds(1), false);
+    auto& AnimationIdleLeft = Animator.CreateAnimation("IdleLeft", m_player.playerTexture, sf::seconds(1), false);
     AnimationIdleLeft.AddFrames(sf::Vector2i(0,575), sf::Vector2i(65,65), 1);
     
-    auto& AnimationIdleRight = Animator.CreateAnimation("IdleRight", Texture, sf::seconds(1), false);
+    auto& AnimationIdleRight = Animator.CreateAnimation("IdleRight", m_player.playerTexture, sf::seconds(1), false);
     AnimationIdleRight.AddFrames(sf::Vector2i(0,703), sf::Vector2i(65,65), 1);
     
-    auto& AnimationIdleBack = Animator.CreateAnimation("IdleBack", Texture, sf::seconds(1), false);
+    auto& AnimationIdleBack = Animator.CreateAnimation("IdleBack", m_player.playerTexture, sf::seconds(1), false);
     AnimationIdleBack.AddFrames(sf::Vector2i(0,511), sf::Vector2i(65,65), 1);
     
-    auto& AnimationIdleFront = Animator.CreateAnimation("IdleFront", Texture, sf::seconds(1), false);
+    auto& AnimationIdleFront = Animator.CreateAnimation("IdleFront", m_player.playerTexture, sf::seconds(1), false);
     AnimationIdleFront.AddFrames(sf::Vector2i(0,640), sf::Vector2i(65,65), 1);
     
-    auto& AnimationAttackRight = Animator.CreateAnimation("SimpleAttackRight", Texture, sf::seconds(0.5),false);
+    auto& AnimationAttackRight = Animator.CreateAnimation("SimpleAttackRight", m_player.playerTexture, sf::seconds(0.5),false);
     AnimationAttackRight.AddFrames(sf::Vector2i(0,959), sf::Vector2i(64,65), 6);
     AnimationAttackRight.AddFrames(sf::Vector2i(320,959), sf::Vector2i(64,65), 1);
-    AnimationAttackRight.AddFrames(sf::Vector2i(320,959), sf::Vector2i(64,65), 1);
     
-    auto& AnimationAttackLeft = Animator.CreateAnimation("SimpleAttackLeft", Texture, sf::seconds(0.5),false);
+    auto& AnimationAttackLeft = Animator.CreateAnimation("SimpleAttackLeft", m_player.playerTexture, sf::seconds(0.5),false);
     AnimationAttackLeft.AddFrames(sf::Vector2i(0,831), sf::Vector2i(64,65), 6);
     AnimationAttackLeft.AddFrames(sf::Vector2i(320,831), sf::Vector2i(64,65), 1);
-    AnimationAttackLeft.AddFrames(sf::Vector2i(320,831), sf::Vector2i(64,65), 1);
     
-    auto& AnimationAttackBack = Animator.CreateAnimation("SimpleAttackBack", Texture, sf::seconds(0.5),false);
+    auto& AnimationAttackBack = Animator.CreateAnimation("SimpleAttackBack", m_player.playerTexture, sf::seconds(0.5),false);
     AnimationAttackBack.AddFrames(sf::Vector2i(0,767), sf::Vector2i(64,65), 6);
     AnimationAttackBack.AddFrames(sf::Vector2i(320,767), sf::Vector2i(64,65), 1);
-    AnimationAttackBack.AddFrames(sf::Vector2i(320,767), sf::Vector2i(64,65), 1);
     
-    auto& AnimationAttackFront = Animator.CreateAnimation("SimpleAttackFront", Texture, sf::seconds(0.5),false);
+    auto& AnimationAttackFront = Animator.CreateAnimation("SimpleAttackFront", m_player.playerTexture, sf::seconds(0.5),false);
     AnimationAttackFront.AddFrames(sf::Vector2i(0,896), sf::Vector2i(64,65), 6);
     AnimationAttackFront.AddFrames(sf::Vector2i(320,896), sf::Vector2i(64,65), 1);
-    AnimationAttackFront.AddFrames(sf::Vector2i(320,896), sf::Vector2i(64,65), 1);
     
-    auto& AnimationMagicFront = Animator.CreateAnimation("MagicFront", Texture, sf::seconds(1),false);
+    auto& AnimationMagicFront = Animator.CreateAnimation("MagicFront", m_player.playerTexture, sf::seconds(2),false);
     AnimationMagicFront.AddFrames(sf::Vector2i(0,128), sf::Vector2i(64,65), 7);
-    AnimationMagicFront.AddFrames(sf::Vector2i(384,128), sf::Vector2i(64,65), 1);
-    AnimationMagicFront.AddFrames(sf::Vector2i(384,128), sf::Vector2i(64,65), 1);
+    AnimationMagicFront.AddFrames(sf::Vector2i(0,640), sf::Vector2i(65,65), 1);
 }
 
 void Player::Attack(std::string AttackType, Animator &PlayerAnimator, int &velocity) {
@@ -136,4 +136,18 @@ void Player::Attack(std::string AttackType, Animator &PlayerAnimator, int &veloc
         PlayerAnimator.SwitchAnimation(AttackType+"AttackFront");
     
     velocity = 0;
+}
+
+void Player::Effects(Animator &Animator, sf::Sprite &EffectSprite) {
+    auto& AnimationMagicFireAura = Animator.CreateAnimation("MagicFireAura", m_player.EffectTexture[0], sf::seconds(2),false);
+    AnimationMagicFireAura.AddFrames(sf::Vector2i(0,0), sf::Vector2i(150,150), 7);
+    AnimationMagicFireAura.AddFrames(sf::Vector2i(0,150), sf::Vector2i(150,150), 7);
+    AnimationMagicFireAura.AddFrames(sf::Vector2i(0,300), sf::Vector2i(150,150), 5);
+    AnimationMagicFireAura.AddFrames(sf::Vector2i(0,0), sf::Vector2i(150,150), 1);
+
+    auto& AnimationMagicDemonAura = Animator.CreateAnimation("MagicDemonAura", m_player.EffectTexture[1], sf::seconds(2),false);
+    AnimationMagicDemonAura.AddFrames(sf::Vector2i(0,0), sf::Vector2i(150,150), 7);
+    AnimationMagicDemonAura.AddFrames(sf::Vector2i(0,150), sf::Vector2i(150,150), 7);
+    AnimationMagicDemonAura.AddFrames(sf::Vector2i(0,300), sf::Vector2i(150,150), 5);
+    AnimationMagicDemonAura.AddFrames(sf::Vector2i(0,0), sf::Vector2i(150,150), 1);
 }

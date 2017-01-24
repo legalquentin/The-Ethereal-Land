@@ -11,5 +11,9 @@
 
 #include <SFML/Audio.hpp>
 #include <SFML/Graphics.hpp>
+#include "ResourcePath.hpp"
+#include "Creator.hpp"
+#include "Menu.hpp"
+#include "Game.hpp"
 
 #endif /* main_h */

@@ -9,18 +9,26 @@
 /* Begin PBXBuildFile section */
 		6623DC9F1E32802700DBA3F6 /* Game.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6623DC9D1E32802700DBA3F6 /* Game.cpp */; };
 		6623DCA11E328C9800DBA3F6 /* WaterFall.png in Resources */ = {isa = PBXBuildFile; fileRef = 6623DCA01E328C9800DBA3F6 /* WaterFall.png */; };
-		6623DCAE1E32C62100DBA3F6 /* Esquinas.png in Resources */ = {isa = PBXBuildFile; fileRef = 6623DCAD1E32C62100DBA3F6 /* Esquinas.png */; };
 		6623DCB21E32E5C000DBA3F6 /* interface.png in Resources */ = {isa = PBXBuildFile; fileRef = 6623DCB11E32E5C000DBA3F6 /* interface.png */; };
 		6623DCB51E32E71600DBA3F6 /* Tools.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6623DCB31E32E71600DBA3F6 /* Tools.cpp */; };
 		6623DCB71E33191A00DBA3F6 /* Map.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6623DCB61E33191A00DBA3F6 /* Map.jpg */; };
-		6623DCBB1E339F7B00DBA3F6 /* PlayerDefault.png in Resources */ = {isa = PBXBuildFile; fileRef = 6623DCBA1E339F7B00DBA3F6 /* PlayerDefault.png */; };
+		6623DCBB1E339F7B00DBA3F6 /* PlayerDefaultM.png in Resources */ = {isa = PBXBuildFile; fileRef = 6623DCBA1E339F7B00DBA3F6 /* PlayerDefaultM.png */; };
 		6623DCBE1E33D69800DBA3F6 /* TextHUD.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 6623DCBD1E33D69800DBA3F6 /* TextHUD.jpg */; };
 		6623DCC21E33E55600DBA3F6 /* GreatWaterfalls.png in Resources */ = {isa = PBXBuildFile; fileRef = 6623DCC11E33E55600DBA3F6 /* GreatWaterfalls.png */; };
 		6642C7931E319DE900DEB157 /* Menu.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 6642C7911E319DE900DEB157 /* Menu.cpp */; };
 		66D7A3681E30FA9F0054D0F5 /* Animator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66D7A3661E30FA9F0054D0F5 /* Animator.cpp */; };
-		66D7A36C1E314FA90054D0F5 /* forest.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D7A36B1E314FA90054D0F5 /* forest.png */; };
+		66D7A36C1E314FA90054D0F5 /* ForestCave.png in Resources */ = {isa = PBXBuildFile; fileRef = 66D7A36B1E314FA90054D0F5 /* ForestCave.png */; };
 		66E784AD1E34DEBF006697EB /* Player.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E784AB1E34DEBF006697EB /* Player.cpp */; };
 		66E784B01E350D86006697EB /* Scene.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E784AE1E350D86006697EB /* Scene.cpp */; };
+		66E784B61E378317006697EB /* DemonFireAura.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E784B51E378317006697EB /* DemonFireAura.png */; };
+		66E784BC1E37B401006697EB /* FireAura.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E784BB1E37B401006697EB /* FireAura.png */; };
+		66E784BE1E37C1C6006697EB /* PlayerDefaultF.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E784BD1E37C1C6006697EB /* PlayerDefaultF.png */; };
+		66E784C81E37CCE8006697EB /* MysticCave.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E784C71E37CCE8006697EB /* MysticCave.png */; };
+		66E784CB1E37D218006697EB /* Creator.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 66E784C91E37D218006697EB /* Creator.cpp */; };
+		66E784CD1E37D590006697EB /* SolaireBackground.png in Resources */ = {isa = PBXBuildFile; fileRef = 66E784CC1E37D590006697EB /* SolaireBackground.png */; };
+		66E784D31E37DD11006697EB /* WaterFalls.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 66E784D21E37DD11006697EB /* WaterFalls.ogg */; };
+		66E784D51E37DE44006697EB /* Forest.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 66E784D41E37DE44006697EB /* Forest.ogg */; };
+		66E784D71E37E38F006697EB /* Ambient.ogg in Resources */ = {isa = PBXBuildFile; fileRef = 66E784D61E37E38F006697EB /* Ambient.ogg */; };
 		66EA27CA1E3412D70086A55E /* 3.leather-texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66EA27C91E3412D70086A55E /* 3.leather-texture.jpg */; };
 		66EA27CC1E3412DE0086A55E /* 13.leather-texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66EA27CB1E3412DE0086A55E /* 13.leather-texture.jpg */; };
 		66EA27CE1E3412E40086A55E /* 8.leather-texture.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 66EA27CD1E3412E40086A55E /* 8.leather-texture.jpg */; };
@@ -40,12 +48,11 @@
 		6623DC9D1E32802700DBA3F6 /* Game.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Game.cpp; sourceTree = "<group>"; };
 		6623DC9E1E32802700DBA3F6 /* Game.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Game.hpp; sourceTree = "<group>"; };
 		6623DCA01E328C9800DBA3F6 /* WaterFall.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = WaterFall.png; sourceTree = "<group>"; };
-		6623DCAD1E32C62100DBA3F6 /* Esquinas.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = Esquinas.png; sourceTree = "<group>"; };
 		6623DCB11E32E5C000DBA3F6 /* interface.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = interface.png; sourceTree = "<group>"; };
 		6623DCB31E32E71600DBA3F6 /* Tools.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Tools.cpp; sourceTree = "<group>"; };
 		6623DCB41E32E71600DBA3F6 /* Tools.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Tools.hpp; sourceTree = "<group>"; };
 		6623DCB61E33191A00DBA3F6 /* Map.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = Map.jpg; sourceTree = "<group>"; };
-		6623DCBA1E339F7B00DBA3F6 /* PlayerDefault.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayerDefault.png; sourceTree = "<group>"; };
+		6623DCBA1E339F7B00DBA3F6 /* PlayerDefaultM.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayerDefaultM.png; sourceTree = "<group>"; };
 		6623DCBD1E33D69800DBA3F6 /* TextHUD.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = TextHUD.jpg; sourceTree = "<group>"; };
 		6623DCC11E33E55600DBA3F6 /* GreatWaterfalls.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = GreatWaterfalls.png; sourceTree = "<group>"; };
 		6642C7911E319DE900DEB157 /* Menu.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Menu.cpp; sourceTree = "<group>"; };
@@ -53,11 +60,21 @@
 		66D7A3651E30F9EA0054D0F5 /* main.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = main.hpp; sourceTree = "<group>"; };
 		66D7A3661E30FA9F0054D0F5 /* Animator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Animator.cpp; sourceTree = "<group>"; };
 		66D7A3671E30FA9F0054D0F5 /* Animator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Animator.hpp; sourceTree = "<group>"; };
-		66D7A36B1E314FA90054D0F5 /* forest.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = forest.png; sourceTree = "<group>"; };
+		66D7A36B1E314FA90054D0F5 /* ForestCave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = ForestCave.png; sourceTree = "<group>"; };
 		66E784AB1E34DEBF006697EB /* Player.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Player.cpp; sourceTree = "<group>"; };
 		66E784AC1E34DEBF006697EB /* Player.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Player.hpp; sourceTree = "<group>"; };
 		66E784AE1E350D86006697EB /* Scene.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Scene.cpp; sourceTree = "<group>"; };
 		66E784AF1E350D86006697EB /* Scene.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Scene.hpp; sourceTree = "<group>"; };
+		66E784B51E378317006697EB /* DemonFireAura.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = DemonFireAura.png; sourceTree = "<group>"; };
+		66E784BB1E37B401006697EB /* FireAura.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = FireAura.png; sourceTree = "<group>"; };
+		66E784BD1E37C1C6006697EB /* PlayerDefaultF.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = PlayerDefaultF.png; sourceTree = "<group>"; };
+		66E784C71E37CCE8006697EB /* MysticCave.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = MysticCave.png; sourceTree = "<group>"; };
+		66E784C91E37D218006697EB /* Creator.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = Creator.cpp; sourceTree = "<group>"; };
+		66E784CA1E37D218006697EB /* Creator.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = Creator.hpp; sourceTree = "<group>"; };
+		66E784CC1E37D590006697EB /* SolaireBackground.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = SolaireBackground.png; sourceTree = "<group>"; };
+		66E784D21E37DD11006697EB /* WaterFalls.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = WaterFalls.ogg; sourceTree = "<group>"; };
+		66E784D41E37DE44006697EB /* Forest.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = Forest.ogg; sourceTree = "<group>"; };
+		66E784D61E37E38F006697EB /* Ambient.ogg */ = {isa = PBXFileReference; lastKnownFileType = file; path = Ambient.ogg; sourceTree = "<group>"; };
 		66EA27C91E3412D70086A55E /* 3.leather-texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "3.leather-texture.jpg"; sourceTree = "<group>"; };
 		66EA27CB1E3412DE0086A55E /* 13.leather-texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "13.leather-texture.jpg"; sourceTree = "<group>"; };
 		66EA27CD1E3412E40086A55E /* 8.leather-texture.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = "8.leather-texture.jpg"; sourceTree = "<group>"; };
@@ -93,9 +110,10 @@
 				66F9EF711E2EC09200C134F4 /* ResourcePath.mm */,
 				66F9EF741E2EC09200C134F4 /* main.cpp */,
 				6642C7911E319DE900DEB157 /* Menu.cpp */,
+				66E784C91E37D218006697EB /* Creator.cpp */,
 				66E784AB1E34DEBF006697EB /* Player.cpp */,
-				6623DCB31E32E71600DBA3F6 /* Tools.cpp */,
 				6623DC9D1E32802700DBA3F6 /* Game.cpp */,
+				6623DCB31E32E71600DBA3F6 /* Tools.cpp */,
 				66E784AE1E350D86006697EB /* Scene.cpp */,
 				66D7A3661E30FA9F0054D0F5 /* Animator.cpp */,
 			);
@@ -106,6 +124,7 @@
 			isa = PBXGroup;
 			children = (
 				6642C7921E319DE900DEB157 /* Menu.hpp */,
+				66E784CA1E37D218006697EB /* Creator.hpp */,
 				6623DC9E1E32802700DBA3F6 /* Game.hpp */,
 				66E784AF1E350D86006697EB /* Scene.hpp */,
 				66E784AC1E34DEBF006697EB /* Player.hpp */,
@@ -120,9 +139,83 @@
 		6623DCBC1E339F9500DBA3F6 /* PlayerSprites */ = {
 			isa = PBXGroup;
 			children = (
-				6623DCBA1E339F7B00DBA3F6 /* PlayerDefault.png */,
+				66E784B51E378317006697EB /* DemonFireAura.png */,
+				66E784BB1E37B401006697EB /* FireAura.png */,
+				66E784BD1E37C1C6006697EB /* PlayerDefaultF.png */,
+				6623DCBA1E339F7B00DBA3F6 /* PlayerDefaultM.png */,
 			);
 			name = PlayerSprites;
+			sourceTree = "<group>";
+		};
+		66E784C11E37CB07006697EB /* Backgrounds */ = {
+			isa = PBXGroup;
+			children = (
+				66E784C71E37CCE8006697EB /* MysticCave.png */,
+				66D7A36B1E314FA90054D0F5 /* ForestCave.png */,
+				6623DCC11E33E55600DBA3F6 /* GreatWaterfalls.png */,
+				6623DCA01E328C9800DBA3F6 /* WaterFall.png */,
+				66E784CC1E37D590006697EB /* SolaireBackground.png */,
+			);
+			name = Backgrounds;
+			sourceTree = "<group>";
+		};
+		66E784C21E37CB5F006697EB /* HUD */ = {
+			isa = PBXGroup;
+			children = (
+				66EA27CD1E3412E40086A55E /* 8.leather-texture.jpg */,
+				66EA27C91E3412D70086A55E /* 3.leather-texture.jpg */,
+				66EA27CB1E3412DE0086A55E /* 13.leather-texture.jpg */,
+				6623DCB61E33191A00DBA3F6 /* Map.jpg */,
+				6623DCBD1E33D69800DBA3F6 /* TextHUD.jpg */,
+				66EA27CF1E3420380086A55E /* oldWood.jpg */,
+				6623DCB11E32E5C000DBA3F6 /* interface.png */,
+			);
+			name = HUD;
+			sourceTree = "<group>";
+		};
+		66E784C31E37CB8C006697EB /* Font */ = {
+			isa = PBXGroup;
+			children = (
+				66F9EF841E2EC7B100C134F4 /* Plain_Black.ttf */,
+				66F9EF7B1E2EC09200C134F4 /* sansation.ttf */,
+			);
+			name = Font;
+			sourceTree = "<group>";
+		};
+		66E784C41E37CBA6006697EB /* StaticWallpaper */ = {
+			isa = PBXGroup;
+			children = (
+				66F9EF8C1E2ECEF000C134F4 /* wallpaper3.jpg */,
+				66F9EF8A1E2ECEE800C134F4 /* wallpaper2.jpg */,
+				66F9EF881E2ECC9A00C134F4 /* wallpaper1.jpg */,
+			);
+			name = StaticWallpaper;
+			sourceTree = "<group>";
+		};
+		66E784C51E37CBBD006697EB /* Stuff */ = {
+			isa = PBXGroup;
+			children = (
+				66F9EF7D1E2EC09200C134F4 /* icon.png */,
+			);
+			name = Stuff;
+			sourceTree = "<group>";
+		};
+		66E784C61E37CBD3006697EB /* Sounds */ = {
+			isa = PBXGroup;
+			children = (
+				66E784D21E37DD11006697EB /* WaterFalls.ogg */,
+				66E784D61E37E38F006697EB /* Ambient.ogg */,
+				66E784D41E37DE44006697EB /* Forest.ogg */,
+				66F9EF791E2EC09200C134F4 /* nice_music.ogg */,
+			);
+			name = Sounds;
+			sourceTree = "<group>";
+		};
+		66E784D81E37E754006697EB /* Monsters */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			name = Monsters;
 			sourceTree = "<group>";
 		};
 		66F9EF621E2EC09200C134F4 = {
@@ -163,25 +256,14 @@
 		66F9EF761E2EC09200C134F4 /* Resources */ = {
 			isa = PBXGroup;
 			children = (
+				66E784D81E37E754006697EB /* Monsters */,
 				6623DCBC1E339F9500DBA3F6 /* PlayerSprites */,
-				6623DCB11E32E5C000DBA3F6 /* interface.png */,
-				66EA27CF1E3420380086A55E /* oldWood.jpg */,
-				6623DCBD1E33D69800DBA3F6 /* TextHUD.jpg */,
-				6623DCAD1E32C62100DBA3F6 /* Esquinas.png */,
-				6623DCB61E33191A00DBA3F6 /* Map.jpg */,
-				66EA27CB1E3412DE0086A55E /* 13.leather-texture.jpg */,
-				66EA27CD1E3412E40086A55E /* 8.leather-texture.jpg */,
-				66EA27C91E3412D70086A55E /* 3.leather-texture.jpg */,
-				66F9EF881E2ECC9A00C134F4 /* wallpaper1.jpg */,
-				66F9EF8A1E2ECEE800C134F4 /* wallpaper2.jpg */,
-				66F9EF8C1E2ECEF000C134F4 /* wallpaper3.jpg */,
-				66D7A36B1E314FA90054D0F5 /* forest.png */,
-				6623DCC11E33E55600DBA3F6 /* GreatWaterfalls.png */,
-				6623DCA01E328C9800DBA3F6 /* WaterFall.png */,
-				66F9EF7D1E2EC09200C134F4 /* icon.png */,
-				66F9EF791E2EC09200C134F4 /* nice_music.ogg */,
-				66F9EF841E2EC7B100C134F4 /* Plain_Black.ttf */,
-				66F9EF7B1E2EC09200C134F4 /* sansation.ttf */,
+				66E784C11E37CB07006697EB /* Backgrounds */,
+				66E784C21E37CB5F006697EB /* HUD */,
+				66E784C31E37CB8C006697EB /* Font */,
+				66E784C41E37CBA6006697EB /* StaticWallpaper */,
+				66E784C51E37CBBD006697EB /* Stuff */,
+				66E784C61E37CBD3006697EB /* Sounds */,
 			);
 			name = Resources;
 			sourceTree = "<group>";
@@ -248,21 +330,28 @@
 				66EA27CC1E3412DE0086A55E /* 13.leather-texture.jpg in Resources */,
 				6623DCB71E33191A00DBA3F6 /* Map.jpg in Resources */,
 				66EA27CE1E3412E40086A55E /* 8.leather-texture.jpg in Resources */,
-				66D7A36C1E314FA90054D0F5 /* forest.png in Resources */,
+				66E784D71E37E38F006697EB /* Ambient.ogg in Resources */,
+				66E784CD1E37D590006697EB /* SolaireBackground.png in Resources */,
+				66D7A36C1E314FA90054D0F5 /* ForestCave.png in Resources */,
 				66F9EF851E2EC7B400C134F4 /* Plain_Black.ttf in Resources */,
 				6623DCBE1E33D69800DBA3F6 /* TextHUD.jpg in Resources */,
 				66F9EF7C1E2EC09200C134F4 /* sansation.ttf in Resources */,
+				66E784B61E378317006697EB /* DemonFireAura.png in Resources */,
 				66F9EF8B1E2ECEE800C134F4 /* wallpaper2.jpg in Resources */,
 				6623DCC21E33E55600DBA3F6 /* GreatWaterfalls.png in Resources */,
 				66EA27CA1E3412D70086A55E /* 3.leather-texture.jpg in Resources */,
 				6623DCB21E32E5C000DBA3F6 /* interface.png in Resources */,
+				66E784D31E37DD11006697EB /* WaterFalls.ogg in Resources */,
 				66F9EF891E2ECC9A00C134F4 /* wallpaper1.jpg in Resources */,
 				6623DCA11E328C9800DBA3F6 /* WaterFall.png in Resources */,
 				66F9EF7A1E2EC09200C134F4 /* nice_music.ogg in Resources */,
 				66EA27D01E3420380086A55E /* oldWood.jpg in Resources */,
-				6623DCAE1E32C62100DBA3F6 /* Esquinas.png in Resources */,
-				6623DCBB1E339F7B00DBA3F6 /* PlayerDefault.png in Resources */,
+				6623DCBB1E339F7B00DBA3F6 /* PlayerDefaultM.png in Resources */,
+				66E784D51E37DE44006697EB /* Forest.ogg in Resources */,
+				66E784BE1E37C1C6006697EB /* PlayerDefaultF.png in Resources */,
+				66E784BC1E37B401006697EB /* FireAura.png in Resources */,
 				66F9EF8D1E2ECEF000C134F4 /* wallpaper3.jpg in Resources */,
+				66E784C81E37CCE8006697EB /* MysticCave.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -293,6 +382,7 @@
 				66F9EF751E2EC09200C134F4 /* main.cpp in Sources */,
 				66E784AD1E34DEBF006697EB /* Player.cpp in Sources */,
 				66F9EF721E2EC09200C134F4 /* ResourcePath.mm in Sources */,
+				66E784CB1E37D218006697EB /* Creator.cpp in Sources */,
 				6642C7931E319DE900DEB157 /* Menu.cpp in Sources */,
 				6623DCB51E32E71600DBA3F6 /* Tools.cpp in Sources */,
 				66D7A3681E30FA9F0054D0F5 /* Animator.cpp in Sources */,

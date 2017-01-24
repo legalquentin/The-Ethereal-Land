@@ -15,8 +15,6 @@
 //
 #include "ResourcePath.hpp"
 #include "main.hpp"
-#include "Menu.hpp"
-#include "Game.hpp"
 
 int main(int, char const**)
 {
@@ -31,19 +29,19 @@ int main(int, char const**)
 
     Menu intro;
     Game front;
+    Player Hero;
+    Creator creation;
     
-    // Load a sprite to display
-    
-    // Load music
     sf::Music music;
-    if (!music.openFromFile(resourcePath() + "nice_music.ogg"))
-        return EXIT_FAILURE;
+    music.openFromFile(resourcePath() + "nice_music.ogg");
     music.setLoop(true);
-//    music.play();
-
+    music.play();
+    
     // Game loop
     while (intro.play(window) == 1) {
-        front.play(window);
+//        creation.play(window, Hero);
+        music.stop();
+        front.play(window, Hero);
     }
     
     return EXIT_SUCCESS;
